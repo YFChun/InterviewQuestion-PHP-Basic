@@ -1,0 +1,50 @@
+//Table 1
+
+create table employee_profile_table(
+employee_id int NOT NULL,
+employee_no int(4) NOT NULL,
+employee_name varchar(10) NOT NULL,
+ic_no int(4) NOT NULL,
+PRIMARY KEY (employee_id)
+);
+
+//Table 2
+
+create table job_profile_table(
+job_id int NOT NULL,
+job_name varchar(20) NOT NULL,
+PRIMARY KEY (job_id)
+);
+
+//Table 3
+
+
+create table employee_job_table(
+employee_id int NOT NULL,
+job_id int NOT NULL,
+effective_date Date NOT NULL,
+FOREIGN KEY (employee_id)
+FOREIGN KEY (job_id)
+);
+
+a.
+UPDATE employee_profile_table
+SET    job_id = 4
+WHERE  employee_no = 1002;
+
+b.
+SELECT E1.employee_name, E1.employee_no, E2.effective_date, J.job_name
+FROM employee_profile_table E1, employee_job_table E2, job_profile_table J
+
+c.
+SELECT E1.employee_name, E1.employee_no, E2.effective_date
+FROM employee_profile_table E1, employee_job_table E2
+ORDER BY E2.effective_date;
+
+d.
+DELETE FROM employee_profile_table
+WHERE employee_no = 1000 AND ( SELECT effective_date
+                               FROM   employee_job_table
+                               WHERE  effective_date LIKE 2020-01-01);
+
+ 
